@@ -1,0 +1,71 @@
+﻿@page
+@model ColorTableModel
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    .p-detail-7 .row {
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+    .item-color {
+        width: 33.333333333%;
+        height: 120px;
+        padding: 20px;
+    }
+    .content-color {
+        background-color: red;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .color-name {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        padding: 0px 10px;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    
+</style>
+    <div class="p-detail-7">
+        <div class="container">
+            <div class="ht-page">
+                <h1>Bảng màu:</h1>
+                <hr>
+                <div class="row">
+                    @if (Model.colorTables.Count>0)
+                    {
+                        @foreach (var item in Model.colorTables)
+                        {
+                        <div class="item-color">
+                            <div class="content-color" style="background-color: @item.ColorCode;">
+                                <p class="color-name">@item.ColorName</p>
+                            </div>
+                            </div>
+                            
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var scrWidth = $(window).width();
+            if (scrWidth > 991) {
+                $('.s-sidebar-1 .s_heading i').removeClass('is-active');
+                $('.s-sidebar-1 .s_heading i').parent().siblings().css('visibility', 'hidden');
+            }
+            $('.s-sidebar-1 .s_heading i').click(function (e) {
+                if (scrWidth > 991) {
+                    $('.s-sidebar-1 .s_heading i').removeClass('is-active');
+                }
+            });
+        });
+
+
+    </script>

@@ -1,0 +1,83 @@
+@page
+@model SonQuangHuy.Admin.ProductManager.DetailsModel
+
+@{
+    ViewData["Title"] = "Chi tiết Sản phẩm";
+}
+<style>
+    .img-uoload {
+        height: 200px;
+        width:auto;
+    }
+</style>
+
+<div>
+    <h4>Chi tiết Sản phẩm</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Ảnh đặt trang chủ
+        </dt>
+        <dd class="col-sm-10">
+            <img class="img-uoload" src="~/@Model.Product.Avatar" alt="Không tìm thấy ảnh">
+        </dd>
+        <dt class="col-sm-2">
+           Tên Sản phẩm
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+        <dt class="col-sm-2">
+            Giá Sản phẩm
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Price)
+        </dd>
+        <dt class="col-sm-2">
+            Loại sơn
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.ProductType)
+        </dd>
+        @* <dt class="col-sm-2">
+            Khuyến mãi
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.Product.Promotion==true?"Có":"Không")
+        </dd> *@
+        @* <dt class="col-sm-2">
+            Số lượng Tồn
+        </dt> *@
+        @* <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Quantity)
+        </dd> *@
+        @* <dt class="col-sm-2">
+            Đã bán
+        </dt> *@
+        @* <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Sold)
+        </dd> *@
+        @* <dt class="col-sm-2">
+            Vị trí
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.ProductLocation)
+        </dd> *@
+        <dt class="col-sm-2">
+            Ảnh chi tiết
+        </dt>
+        <dd class="col-sm-10">
+            <img class="img-uoload" src="~/@Model.Product.DetailsImage" alt="Không tìm thấy ảnh">
+        </dd>
+        <dt class="col-sm-2">
+            Mô tả
+        </dt>
+        <dd class="col-sm-10">
+            @Html.Raw(Model.Product.Details1 + Model.Product.Details2 + Model.Product.Details3 + Model.Product.Details4)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Product?.Id">Sửa Sản Phẩm</a> |
+    <a asp-page="./Index">Quay Lại</a>
+</div>

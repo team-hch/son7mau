@@ -1,0 +1,46 @@
+@page
+@model SonQuangHuy.Admin.BlogManager.DetailsModel
+
+@{
+    ViewData["Title"] = "Chi tiết Bài viết";
+}
+<style>
+    img {
+        height: auto;
+    }
+</style>
+
+<div>
+    <h4>Chi tiết Bài viết</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Ảnh
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/@Model.Blog.Avatar" alt="Không tìm thấy ảnh">
+        </dd>
+        <dt class="col-sm-2">
+           Tiêu đề
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Blog.BlogTitle)
+        </dd>
+        <dt class="col-sm-2">
+            Mô tả ngắn
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Blog.Description)
+        </dd>
+        <dt class="col-sm-2">
+            Bài viết
+        </dt>
+        <dd class="col-sm-10">
+            @Html.Raw(Model.Details)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Blog?.Id">Sửa Bài viết</a> |
+    <a asp-page="./Index">Quay Lại</a>
+</div>

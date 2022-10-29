@@ -1,0 +1,84 @@
+@page
+@model SonQuangHuy.Admin.ProductManager.IndexModel
+
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+}
+
+<h1>Quản lý sản phẩm</h1>
+<p>
+    <a asp-page="Create">Thêm sản phẩm</a>
+</p>
+<form action="" method="get" >
+    <select asp-for="productType" class ="form-control" asp-items="Model.productTypes"></select>
+<button class="btn btn-success">Lọc Sản Phẩm</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+            Khối lượng
+            </th>
+            <th>
+                Loại sản phẩm
+            </th>
+            <th>
+                Giảm giá
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @if(Model.Product.Count()>0)
+        @foreach (var item in Model.Product) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @if(item.Promotion>0){
+                    <span style="text-decoration: line-through;">@String.Format("{0:0,0}", item.Price).Replace(",",".")</span>
+                    @String.Format("{0:0,0}", item.Price - item.Price/100*item.Promotion).Replace(",",".")
+                }
+                else {
+
+                    @String.Format("{0:0,0}", item.Price).Replace(",",".")
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight) 
+                @item.Unit
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.Sold)
+            </td> *@
+            @* <td>
+                @Html.DisplayFor(modelItem => item.ProductLocation)
+            </td> *@
+            @* <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductType)
+            </td>
+            <td>
+                 @Html.DisplayFor(modelItem => item.Promotion) %
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Sửa</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Chi tiết</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Xóa</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+     @if(Model.Product.Count()==0){
+        <p style="text-align:center">Sản phẩm không được tìm thấy, vui lòng thêm mới sản phẩm</p>
+     }
